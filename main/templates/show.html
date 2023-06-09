@@ -14,20 +14,21 @@
     <table>
         <thead>
             <tr>
-                <th>Employee ID</th>
-                <th>Employee Name</th>
+                <th>ID</th>
+                <th>Address</th>
+                <th>Showmap</th>
             </tr>
         </thead>
         <tbody>
-            {% for users in storedata %}
             <tr>
 
                 <td>{{ users.id }}</td>
+                <td>{{ users.street }} {{user.city}},{{user.country}}</td>
+
 
                 <td>
-                    <a href="{% url 'map' id=users.id %}"><button>Generate Map</button></a>
+                    <a href="" onclick="showmap(google)">Generate Map</a>
                 </td>
-                {% endfor %}
 
             </tr>
 
@@ -38,5 +39,16 @@
     <br>
     <button><a style="color:white;" href="/emp">Add New Record</a></button>
 </body>
+<script>
+    const street = "{{user.street}}"
+    const city = "{{user.city}}"
+    const country = "{{user.country}}"
+
+    const google = `https://www.google.com/maps/search/${street} ${city} ${country}?entry=ttu`
+    function showmap(link) {
+
+        window.open(link, '_blank')
+    }
+</script>
 
 </html>
